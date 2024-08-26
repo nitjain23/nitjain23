@@ -12,6 +12,13 @@ jobs:
     runs-on: windows-latest
     
     steps:
+      - name: SonarQube Analysis
+        uses: SonarSource/sonar-scanner-action@master
+        with:
+          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
+          sonar-organization: ${{ secrets.SONAR_ORGANIZATION }}
+          sonar-host.url: ${{ secrets.SONAR_HOST_URL }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
